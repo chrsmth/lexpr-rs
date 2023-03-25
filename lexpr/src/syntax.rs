@@ -61,4 +61,7 @@ pub enum CharSyntax {
 
     /// Emacs Lisp syntax.
     Elisp,
+
+    /// Print chars as Atoms
+    Atom,
 }

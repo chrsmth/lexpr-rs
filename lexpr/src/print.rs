@@ -513,6 +513,7 @@ impl Formatter for CustomizedFormatter {
         match self.options.char_syntax {
             CharSyntax::R6RS => write_scheme_char(writer, c),
             CharSyntax::Elisp => write_elisp_char(writer, c),
+            CharSyntax::Atom => write_symbol_char(writer, c),
         }
     }
 
@@ -853,6 +854,13 @@ where
         // consistent with the behaviour inside strings.
         write!(writer, "?\\x{:x}", n)
     }
+}
+
+fn write_symbol_char<W: ?Sized>(writer: &mut W, c: char) -> io::Result<()>
+where
+    W: io::Write,
+{
+    write!(writer, "{}", c)
 }
 
 const AA: u8 = b'a'; // \x07
