@@ -368,15 +368,11 @@ pub trait Formatter {
     /// Called before starting to write a list or vector element. Writes a space
     /// to the specified writer, if needed.
     #[inline]
-    fn begin_seq_element<W: ?Sized>(&mut self, writer: &mut W, first: bool) -> io::Result<()>
+    fn begin_seq_element<W: ?Sized>(&mut self, _writer: &mut W, _first: bool) -> io::Result<()>
     where
         W: io::Write,
     {
-        if first {
-            Ok(())
-        } else {
-            writer.write_all(b" ")
-        }
+        Ok(())
     }
 
     /// Called after every list or vector element.
